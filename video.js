@@ -1,4 +1,4 @@
-const apiKey = 'YOUR_API_KEY';  // ここに取得したYouTube Data APIキーを入力
+const apiKey = 'AIzaSyBcBIRjJduIqP7BE4DA36WlYGprQ8P82M4';  // ここに取得したYouTube Data APIキーを入力
 const videoId = new URLSearchParams(window.location.search).get('v');
 const videoDetailsUrl = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=snippet,statistics&key=${apiKey}`;
 const relatedVideosUrl = `https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${videoId}&type=video&part=snippet&key=${apiKey}`;
