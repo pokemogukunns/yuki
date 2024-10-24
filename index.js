@@ -3,6 +3,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const videoInfoDiv = document.getElementById('video-info');
     const errorLogDiv = document.getElementById('error-log');
     const invidiousInstances = [
+    "https://invidious.snopyta.org",
+    "https://invidious.xyz",
+    "https://invidious.omni.re",
+    "https://invidious.tube",
+    "https://invidious.issac.space",
+    "https://invidious.kavin.rocks",
+    "https://invidious.garudalinux.org",
+    "https://invidious.mirror.xyz",
+    "https://invidious.lawst.org"
         "http://invidious.materialio.us/",
         "http://invidious.perennialte.ch/",
         "http://yewtu.be/",
@@ -12,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
         "https://invidious.perennialte.ch/",
         "https://yt.cdaut.de/",
         "https://invidious.materialio.us/",
-        "https://yewtu.be/",
         "https://invidious.fdn.fr/",
         "https://inv.tux.pizza/",
         "https://invidious.privacyredirect.com/",
