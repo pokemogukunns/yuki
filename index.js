@@ -38,13 +38,31 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     if (videoId) {
-        fetchVideoInfo(videoId);
+        fetchAdditionalInstances().then(additionalInstances => {
+            fetchVideoInfo(videoId, invidiousInstances, additionalInstances);
+        });
     } else {
         videoInfoDiv.innerText = '動画IDが指定されていません。';
     }
 
-    async function fetchVideoInfo(videoId) {
-        for (const instance of invidiousInstances) {
+    async function fetchAdditionalInstances() {
+        // ここにインスタンスを提供するAPIのURLを指定
+        const apiUrl = 'https://example.com/api/invidious-instances';
+        try {
+            const response = await fetch(apiUrl);
+            if (!response.ok) throw new Error('インスタンスリストを取得できませんでした。');
+            const instances = await response.json();
+            return instances; // 取得したインスタンスリストを返す
+        } catch (error) {
+            errorLogDiv.innerHTML += `追加インスタンスの取得エラー: ${error.message}<br>`;
+            return []; // エラーが発生した場合は空の配列を返す
+        }
+    }
+
+    async function fetchVideoInfo(videoId, instances, additionalInstances) {
+        const allInstances = [...instances, ...additionalInstances];
+
+        for (const instance of allInstances) {
             try {
                 const response = await fetch(`${instance}api/v1/videos/${videoId}`);
                 if (response.ok) {
@@ -58,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 errorLogDiv.innerHTML += `インスタンス: ${instance} - エラー: ${error.message}<br>`;
             }
         }
+
         errorLogDiv.innerHTML += '全てのインスタンスに対してリクエストを試みましたが、成功しませんでした。';
     }
 
